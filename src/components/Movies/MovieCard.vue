@@ -1,36 +1,31 @@
 <template>
-  <div class="col-12 col-md-3 q-mb-lg q-px-lg">
-    <q-card class="my-card ">
-      <q-img
-        :src="`https://image.tmdb.org/t/p/original/${MovieData.poster_path}`"
-      />
-      <q-card-section>
-        {{MovieData.title}}
-      </q-card-section>
-      <q-card-section>
-        {{genreString}}
-      </q-card-section>
-    </q-card>
-  </div>
+    <div class="col-6 col-md-3 col-lg-2 q-mb-lg q-px-xs">
+      <router-link :to="`movie/${movieData.id}`">
+        <q-card class="full-height">
+          <q-img
+            style=" max-width: 100%"
+            :src="`https://image.tmdb.org/t/p/original/${movieData.poster_path}`"
+          >
+            <template v-slot:loading>
+              <q-skeleton height="400px" style="max-height: 100%; max-width: 100%" square width="300px" />
+            </template>
+          </q-img>
+          <q-card-section>
+            {{movieData.title}}
+          </q-card-section>
+        </q-card>
+      </router-link>
+    </div>
 </template>
 
 <script>
 export default {
   name: "MovieCard",
   props: {
-    MovieData: {
+    movieData: {
       type: Object,
       required: true
     },
-    genre: {
-      type: Array,
-      required: true
-    }
   },
-  computed: {
-    genreString() {
-      return this.genre.map(item => item.name).join(',')
-    }
-  }
 }
 </script>

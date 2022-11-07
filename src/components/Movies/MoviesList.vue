@@ -1,24 +1,23 @@
 <template>
    <div class="row">
-     <movie-card
-       v-for="(movie, index) in movies"
-       :key="index"
-       :movie-data="movie"
-       :genre="getMovieGenres(movie.genre_ids)"
-     ></movie-card>
+       <movie-card
+         v-for="(movie, index) in movies"
+         :key="movie.id"
+         :movie-data="movie"
+       ></movie-card>
    </div>
 </template>
 
 <script>
-import movieService from './../../services/movieService.'
+import movieService from './../../services/movieService'
 import MovieCard from "components/Movies/MovieCard";
 
 export default {
   name: 'MoviesList',
   data: () => ({
-    movies: [],
     genres: []
   }),
+  props: ['movies'],
   methods: {
     getMoviesList(page) {
       return new Promise(resolve => {
@@ -34,14 +33,10 @@ export default {
         })
       });
     },
-    getMovieGenres(genreIds) {
-      return this.genres.filter(item => genreIds.includes(item.id))
-    }
   },
   components: { MovieCard },
   async mounted() {
     this.genres = await this.getGenres()
-    this.movies = await this.getMoviesList()
   }
 }
 </script>

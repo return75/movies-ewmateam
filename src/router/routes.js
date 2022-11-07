@@ -1,10 +1,22 @@
-
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MoviesLayout.vue'),
+    component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Movies.vue') }
+      {
+        path: '',
+        component: () => import('pages/Movies.vue')
+      }
+    ]
+  },
+  {
+    path: '/movie/:id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('pages/MovieDetails.vue')
+      }
     ]
   },
 
