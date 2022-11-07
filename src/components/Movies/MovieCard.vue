@@ -3,11 +3,11 @@
       <router-link :to="`movie/${movieData.id}`">
         <q-card class="full-height">
           <q-img
-            style=" max-width: 100%"
+            style=" width: 100%; height: 300px"
             :src="`https://image.tmdb.org/t/p/original/${movieData.poster_path}`"
           >
             <template v-slot:loading>
-              <q-skeleton height="400px" style="max-height: 100%; max-width: 100%" square width="300px" />
+              <q-skeleton animation="blink" height="400px" square width="200px" />
             </template>
           </q-img>
           <q-card-section>
