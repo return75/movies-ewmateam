@@ -42,7 +42,6 @@ export default {
     filter: {
       deep: true,
       async handler(val, prev) {
-        console.log(val, prev)
         let {data} = await this.getMovies(val)
         this.movies = data
       }

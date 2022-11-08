@@ -2,12 +2,8 @@ import Vue from "vue";
 import makeQueryString from '../scripts/make-query-string'
 let axios = Vue.prototype.$axios
 
-//let BASE_URL = process.env.BASE_URL
-//let API_KEY = process.env.API_KEY
-
 let BASE_URL = 'https://api.themoviedb.org/3'
 let API_KEY = 'f62f750b70a8ef11dad44670cfb6aa57'
-
 
 export default {
   getMoviesList: (filter = {}) => {
