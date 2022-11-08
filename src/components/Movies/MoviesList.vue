@@ -1,16 +1,18 @@
 <template>
-   <div class="row">
-       <movie-card
-         v-for="(movie, index) in movies"
-         :key="movie.id"
-         :movie-data="movie"
-       ></movie-card>
-   </div>
+     <div class="row justify-center" v-if="movies.length">
+         <movie-card
+           v-for="(movie, index) in movies"
+           :key="movie.id"
+           :movie-data="movie"
+         ></movie-card>
+     </div>
+     <preloader v-else></preloader>
 </template>
 
 <script>
 import movieService from './../../services/movieService'
-import MovieCard from "components/Movies/MovieCard";
+import MovieCard from "components/Movies/MovieCard"
+import Preloader from "./../Preloader"
 
 export default {
   name: 'MoviesList',
@@ -18,6 +20,7 @@ export default {
     genres: []
   }),
   props: ['movies'],
+  components: { MovieCard, Preloader },
   methods: {
     getMoviesList(page) {
       return new Promise(resolve => {
@@ -34,7 +37,6 @@ export default {
       });
     },
   },
-  components: { MovieCard },
   async mounted() {
     this.genres = await this.getGenres()
   }

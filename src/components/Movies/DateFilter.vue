@@ -11,13 +11,13 @@
           <q-popup-proxy @hide="emitDateChange" ref="qDateProxy" transition-show="scale" transition-hide="scale">
             <q-date v-model="dateRange" range :options="disableFutureDates">
               <div class="row items-center justify-end">
-                <q-btn v-close-popup label="Close" color="primary" flat />
+                <q-btn v-close-popup label="submit" color="primary" flat />
               </div>
             </q-date>
           </q-popup-proxy>
         </q-icon>
       </template>
-      <template v-slot:prepend v-if="dateRange.from">
+      <template v-slot:prepend v-if="dateRange && dateRange.from">
         <q-icon name="clear" class="cursor-pointer" @click.prevent="clearDateRange">
           <q-tooltip>remove date filter</q-tooltip>
         </q-icon>
@@ -48,7 +48,6 @@ export default {
       this.$refs.qDateProxy.show()
     },
     emitDateChange() {
-      console.log('emit', this.dateRange)
       this.$emit('updated:from', this.dateRange.from.replaceAll('/', '-'))
       this.$emit('updated:to', this.dateRange.to.replaceAll('/', '-'))
     }

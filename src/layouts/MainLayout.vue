@@ -13,6 +13,6 @@ export default {
 <style>
 .container-padding {
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 100px;
 }
 </style>

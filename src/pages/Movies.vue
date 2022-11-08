@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center column">
+  <q-page class="flex flex-center column" style="min-height: unset">
     <date-filter class="date-container" @updated:from="filter['release_date.gte'] = $event"
                  @updated:to="filter['release_date.lte'] = $event"></date-filter>
     <movies-list :movies="movies"></movies-list>
@@ -34,6 +34,8 @@ export default {
             data: res.data.results,
             totalPages: res.data.total_pages
           })
+        }).catch(err => {
+          console.log('err', err.code)
         })
       })
     }
