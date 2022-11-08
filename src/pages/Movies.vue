@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center column" style="min-height: unset">
-    <date-filter class="date-container" @updated:from="filter['release_date.gte'] = $event"
-                 @updated:to="filter['release_date.lte'] = $event"></date-filter>
+    <date-filter class="date-container" @updated:from="filter['primary_release_date.gte'] = $event"
+                 @updated:to="filter['primary_release_date.lte'] = $event"></date-filter>
     <movies-list :movies="movies"></movies-list>
     <movie-pagination @updated:page="filter.page = $event" :maxPage="totalPages"></movie-pagination>
   </q-page>
@@ -19,8 +19,8 @@ export default {
   data: () => ({
     page: 1,
     filter: {
-      'release_date.gte' : null,
-      'release_date.lte' : null,
+      'primary_release_date.gte' : null,
+      'primary_release_date.lte' : null,
       page: 1,
     },
     movies: [],
@@ -34,8 +34,6 @@ export default {
             data: res.data.results,
             totalPages: res.data.total_pages
           })
-        }).catch(err => {
-          console.log('err', err.code)
         })
       })
     }
@@ -43,7 +41,8 @@ export default {
   watch: {
     filter: {
       deep: true,
-      async handler(val) {
+      async handler(val, prev) {
+        console.log(val, prev)
         let {data} = await this.getMovies(val)
         this.movies = data
       }

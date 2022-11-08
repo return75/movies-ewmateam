@@ -5,10 +5,9 @@
       v-model="page"
       input
       class="justify-center"
-      style="height: 60px"
       @input="updatePage"
     />
-    <div class="text-center q-pb-lg">
+    <div class="text-center q-pb-md">
       Showing results : {{resultsRange}}
     </div>
   </div>

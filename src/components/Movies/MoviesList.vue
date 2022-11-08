@@ -4,6 +4,7 @@
            v-for="(movie, index) in movies"
            :key="movie.id"
            :movie-data="movie"
+           :genre="getMovieGenres(movie.genre_ids)"
          ></movie-card>
      </div>
      <preloader v-else></preloader>
@@ -36,6 +37,9 @@ export default {
         })
       });
     },
+    getMovieGenres(genreIds) {
+      return this.genres.filter(item => genreIds.includes(item.id))
+    }
   },
   async mounted() {
     this.genres = await this.getGenres()

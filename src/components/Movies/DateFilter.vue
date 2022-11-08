@@ -17,7 +17,7 @@
           </q-popup-proxy>
         </q-icon>
       </template>
-      <template v-slot:prepend v-if="dateRange && dateRange.from">
+      <template v-slot:prepend v-if="dateRange">
         <q-icon name="clear" class="cursor-pointer" @click.prevent="clearDateRange">
           <q-tooltip>remove date filter</q-tooltip>
         </q-icon>
@@ -35,7 +35,7 @@ const formattedDate = date.formatDate(now, 'YYYY/MM/DD')
 export default {
   name: "DateFilter",
   data: () => ({
-    dateRange: { from: '', to: '' },
+    dateRange: null,
   }),
   methods: {
     clearDateRange() {
