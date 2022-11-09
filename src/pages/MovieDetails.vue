@@ -33,12 +33,16 @@
           <div class="text-h5 text-weight-bold">Homepage Link</div>
           <q-btn color="primary" :href="movieDetails.homepage"
                  target="_blank"
-                 label="Homepage" flat />
+                 label="Link" flat />
         </div>
       </div>
     </div>
     <div class="row q-mt-xl text-body1 text-justify text-weight-bold">
       {{movieDetails.overview}}
+    </div>
+    <div class="row q-mt-xl text-body1 text-justify text-weight-bold">
+      <div class="text-h6 text-weight-bold">Credit:</div>
+      <div>{{castAndCrewString}}</div>
     </div>
   </q-page>
 </template>
@@ -64,6 +68,17 @@ export default {
     },
     isMobile() {
       return window.innerWidth < 540
+    },
+    castAndCrew() {
+      return [...this.movieCredits.cast, ...this.movieCredits.crew]
+    },
+    castAndCrewString() {
+      let counts = this.castAndCrew.length
+      let firstTenItems = this.castAndCrew.slice(0, 10)
+      if (counts > 10) {
+        return `${firstTenItems.map(item => item.name).join(', ')} and ${counts - 10} more.`
+      }
+      return firstTenItems.map(item => item.name).join(', ')
     }
   },
   methods: {
@@ -74,10 +89,18 @@ export default {
         })
       })
     },
+    getMovieCredits(movieId) {
+      return new Promise(resolve => {
+        movieService.getMovieCredits(movieId).then(res => {
+          resolve(res.data)
+        })
+      })
+    }
   },
   async mounted() {
     this.movieDetails = await this.getMovieDetails(this.$route.params.id)
-
+    this.movieCredits = await this.getMovieCredits(this.$route.params.id)
+    this.render = true
   }
 }
 </script>
