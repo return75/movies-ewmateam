@@ -1,5 +1,13 @@
 <template>
   <q-page>
+    <div class="row q-mb-xl items-center">
+      <q-btn size="lg" outline rounded class="q-mr-xl"
+             @click="$router.go(-1)"> Back</q-btn>
+      <div class="q-ml-xl">
+        <div class="text-h4">{{movieDetails.title}}</div>
+        <div class="text-h6">{{movieDetails.tagline}}</div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-12 col-md-5">
         <q-img class="rounded-borders" :src="`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`"/>

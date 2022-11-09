@@ -1,6 +1,8 @@
 <template>
-  <div style="max-width: 100%">
+  <div style="max-width: 80%">
     <q-input
+      dark
+      color="white"
       @click="openDatePicker"
       outlined rounded v-model="dateRangeInput"
       style="width: 500px; max-width: 100%"
@@ -31,7 +33,6 @@ import { date } from 'quasar'
 const now = Date.now()
 const formattedDate = date.formatDate(now, 'YYYY/MM/DD')
 
-
 export default {
   name: "DateFilter",
   data: () => ({
@@ -40,6 +41,7 @@ export default {
   methods: {
     clearDateRange() {
       this.dateRange = {from: '', to: ''}
+      this.emitDateChange()
     },
     disableFutureDates(date) {
       return date <= formattedDate

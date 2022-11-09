@@ -1,16 +1,16 @@
 <template>
-  <div class="bg-white fixed full-width text-center" style="bottom: 0;z-index: 2">
-    <q-pagination
-      :max="maxPage"
-      v-model="page"
-      input
-      class="justify-center"
-      @input="updatePage"
-    />
-    <div class="text-center q-pb-md">
-      Showing results : {{resultsRange}}
+    <div class="fixed container text-center pagination-container">
+      <q-pagination
+        :max="maxPage"
+        v-model="page"
+        input
+        class="justify-center"
+        @input="updatePage"
+      />
+      <div class="text-center q-pb-md text-dark">
+        Showing results : {{resultsRange}}
+      </div>
     </div>
-  </div>
 </template>
 <script>
 
@@ -36,3 +36,12 @@ export default {
   },
 }
 </script>
+<style>
+.pagination-container {
+  bottom: 0;
+  z-index: 2;
+  background: #efefef;
+  border-top-right-radius: .5rem;
+  border-top-left-radius: .5rem;
+}
+</style>
