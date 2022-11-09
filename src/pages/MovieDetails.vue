@@ -58,8 +58,8 @@ export default {
   computed: {
     infoToShow() {
       return {
-        Budget: `$${this.movieDetails.budget}`,
-        Revenue: `$${this.movieDetails.revenue}`,
+        Budget: `$${ this.formatNumber(this.movieDetails.budget)}`,
+        Revenue: `$${ this.formatNumber(this.movieDetails.revenue) }`,
         'Release Date': this.movieDetails.release_date,
         Runtime: `${this.movieDetails.runtime} min`,
         Score: `${this.movieDetails.vote_average} (${this.movieDetails.vote_count} votes)`,
@@ -95,6 +95,9 @@ export default {
           resolve(res.data)
         })
       })
+    },
+    formatNumber(number) {
+      return new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(number)
     }
   },
   async mounted() {
