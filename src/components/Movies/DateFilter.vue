@@ -19,7 +19,7 @@
           </q-popup-proxy>
         </q-icon>
       </template>
-      <template v-slot:prepend v-if="dateRange">
+      <template v-slot:prepend v-if="dateRange && dateRange.to">
         <q-icon name="clear" class="cursor-pointer" @click.prevent="clearDateRange">
           <q-tooltip>remove date filter</q-tooltip>
         </q-icon>

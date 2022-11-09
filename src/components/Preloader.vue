@@ -1,7 +1,7 @@
 <template>
   <div style="height: 500px" class="flex flex-center">
     <q-spinner-puff
-      color="primary"
+      color="white"
       size="2em"
     />
     <q-tooltip :offset="[0, 8]">QSpinnerPuff</q-tooltip>

@@ -15,6 +15,9 @@ export default {
   },
   getMovieDetails: (movieId) => {
     return axios.get(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`)
+  },
+  getMovieCredits: (movieId) => {
+    return  axios.get(`${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`)
   }
 }
 

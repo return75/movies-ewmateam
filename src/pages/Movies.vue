@@ -45,7 +45,7 @@ export default {
   watch: {
     filter: {
       deep: true,
-      async handler(val, prev) {
+      async handler(val) {
         let {data, totalPages} = await this.getMovies(val)
         this.movies = data
         this.totalPages = totalPages
