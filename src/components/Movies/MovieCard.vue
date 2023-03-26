@@ -1,5 +1,5 @@
 <template>
-    <div class="col-6 col-md-3 col-lg-2 q-mb-lg q-px-xs">
+    <div class="col-6 q-mb-lg q-px-xs">
       <router-link :to="`movie/${movieData.id}`" class="no-link-style">
         <q-card class="full-height bg-transparent flat">
           <q-img

@@ -1,7 +1,9 @@
 <template>
-  <q-layout>
-    <q-page-container class="container container-padding">
-      <router-view />
+  <q-layout class="flex flex-center">
+    <q-page-container class="gradient q-pa-lg" style="width: 600px; max-width: 100%">
+      <div class="full-height">
+        <router-view />
+      </div>
     </q-page-container>
   </q-layout>
 </template>
@@ -11,8 +13,7 @@ export default {
 }
 </script>
 <style>
-.container-padding {
-  padding-top: 60px;
-  padding-bottom: 100px;
+.gradient {
+  background: linear-gradient(187deg, rgb(11, 33, 93) 0%, rgb(12, 20, 41) 100%);
 }
 </style>

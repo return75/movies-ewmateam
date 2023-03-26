@@ -1,15 +1,13 @@
 <template>
-    <div class="fixed container text-center pagination-container">
+    <div class="fixed pagination-container q-pa-sm">
       <q-pagination
         :max="maxPage"
         v-model="page"
-        input
-        class="justify-center"
         @input="updatePage"
+        color="blue-grey-10"
+        :max-pages="6"
+        :boundary-numbers="false"
       />
-      <div class="text-center q-pb-md text-dark">
-        Showing results : {{resultsRange}}
-      </div>
     </div>
 </template>
 <script>
@@ -21,13 +19,6 @@ export default {
     page: 1,
     perPage: 20
   }),
-  computed: {
-    resultsRange() {
-      let startItem = (this.page - 1) * this.perPage + 1
-      let endItem = this.page  * this.perPage
-      return `${startItem} - ${endItem}`
-    }
-  },
   props: ['maxPage'],
   methods: {
     updatePage(page) {
@@ -40,8 +31,12 @@ export default {
 .pagination-container {
   bottom: 0;
   z-index: 2;
-  background: #efefef;
-  border-top-right-radius: .5rem;
-  border-top-left-radius: .5rem;
+  background: rgba(255, 255, 255, 1);
+  width: 600px;
+  display: flex;
+  justify-content: center;
+}
+.q-pagination button {
+  min-width: 30px !important;
 }
 </style>

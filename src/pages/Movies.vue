@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center column" style="min-height: unset">
+  <q-page class="flex flex-center column text-white" style="max-width: 100%">
     <date-filter
        class="date-container"
        @updated:from="filter['primary_release_date.gte'] = $event"

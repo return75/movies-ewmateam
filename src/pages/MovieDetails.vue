@@ -1,35 +1,28 @@
 <template>
-  <q-page v-if="render">
-    <div class="q-mb-xl items-center" :class="{ 'row': !isMobile }">
-      <q-btn size="lg" outline rounded
-             @click="$router.go(-1)"> Back</q-btn>
-      <div :class="{'q-ml-xl': !isMobile, 'q-mt-lg': isMobile}">
+  <q-page v-if="render" class="text-white full-height">
+    <div class="q-mb-xl items-center flex">
+      <q-btn size="lg" outline rounded @click="$router.go(-1)"> Back</q-btn>
+      <div class="q-pl-md q-mt-md">
         <div class="text-h4">{{movieDetails.title}}</div>
         <div class="text-h6">{{movieDetails.tagline}}</div>
       </div>
     </div>
     <div class="row">
-      <div class="col-12 col-md-5">
+      <div class="col-12">
         <q-img class="rounded-borders" :src="`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`"/>
       </div>
-      <div class="col-12 col-md-7 q-pt-xl" :class="{ 'q-pl-xl': !isMobile }">
-        <div v-for="(value, name) in infoToShow"
-             class="row justify-between items-center q-mb-lg"
-             :class="{ 'q-ml-xl': !isMobile }"
-        >
+      <div class="col-12 q-pt-xl">
+        <div v-for="(value, name) in infoToShow" class="row justify-between items-center q-mb-lg">
           <div class="text-h5 text-weight-bold">{{name}}</div>
           <div class="text-weight-bold" v-html="value"></div>
         </div>
-        <div class="row justify-between items-center q-mb-lg"
-              :class="{'q-ml-xl': !isMobile}"
-        >
+        <div class="row justify-between items-center q-mb-lg">
           <div class="text-h5 text-weight-bold">IMDB Link</div>
           <q-btn color="primary" :href="`https://www.imdb.com/title/${movieDetails.imdb_id}`"
                  target="_blank"
                  label="Link" flat />
         </div>
-        <div class="row justify-between items-center"
-             :class="{'q-mb-lg q-ml-xl': !isMobile}">
+        <div class="row justify-between items-center">
           <div class="text-h5 text-weight-bold">Homepage Link</div>
           <q-btn color="primary" :href="movieDetails.homepage"
                  target="_blank"
@@ -65,9 +58,6 @@ export default {
         Score: `${this.movieDetails.vote_average} (${this.movieDetails.vote_count} votes)`,
         Genres: this.movieDetails.genres.map(item => item.name).join(' &#8226; '),
       }
-    },
-    isMobile() {
-      return window.innerWidth < 540
     },
     castAndCrew() {
       return [...this.movieCredits.cast, ...this.movieCredits.crew]
